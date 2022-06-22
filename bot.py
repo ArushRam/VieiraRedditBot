@@ -78,15 +78,11 @@ class Bot:
                     print(self.determineVieira(comment))
                     print("*******")
 
-
-
-
 def main():
     bot = Bot()
     # bot.test()
     while True:
         bot.run()
-
 
 if __name__ == '__main__':
     main()

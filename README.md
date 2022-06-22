@@ -21,4 +21,4 @@ source <filename>.env
 set +a
 ```
 
-Run script as `python3 bot.py`
+Run script as `python3 bot.py` or `python bot.py`

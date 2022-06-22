@@ -40,19 +40,26 @@ class Bot:
                 return "Portugal"
             else:
                 return ["Senegal", "Portugal"][random.randint(0,1)]
-            
 
+    def testDetermineVieira(self, comment):
+        comment_counts = [sum([comment.lower().count(word) for word in wordlist]) for wordlist in WORDLISTS]
+        if comment_counts[0] > comment_counts[1]:
+            return "Senegal"
+        elif comment_counts[1] > comment_counts[0]:
+            return "Portugal"
+        else:
+            return ["Senegal", "Portugal"][random.randint(0,1)]
+            
     def run(self):
         try:
             for comment in self.subreddit.stream.comments(skip_existing=False):
                 if self.search_phrase in comment.body.lower() and comment.id not in self.comment_ids and comment.author.name != "VieiraBot":
                     try:
-                        print(comment.author)
                         self.comment_ids.add(comment.id)
                         replyStr = f'\n\n*He comes from {self.determineVieira(comment)}, He plays for Arsenal, ~~Viera~~ Ohh, __Vieira__ Ohh!*'
                         replyStr += "\n___\n^(_i'm a bot, dm [my creator](https://www.reddit.com/user/CuriousCurry8) for feedback!_)"
-                        print(comment.body.lower())
-                        print(replyStr)
+                        logger.info(comment.body.lower())
+                        logger.info(replyStr)
                         comment.reply(body=replyStr)
                         logger.info('Replied')
                     except PrawcoreException:
@@ -76,9 +83,9 @@ class Bot:
 
 def main():
     bot = Bot()
-    # while True:
-    #    bot.run()
-    bot.run()
+    # bot.test()
+    while True:
+        bot.run()
 
 
 if __name__ == '__main__':

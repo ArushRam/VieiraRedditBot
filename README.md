@@ -1,6 +1,6 @@
 A Reddit bot correcting incorrect spellings of Vieira on /r/Gunners, and replying with a chant based on which Vieira is being referred to!
 
-Inspired by Manik Narang's Wenger bot (https://github.com/maniknarang/arsenal-reddit-bot).
+Inspired by Manik Narang's Arsene Wenger bot (https://github.com/maniknarang/arsenal-reddit-bot).
 ## RUNNING SCRIPT
 
 Build an `.env` file as follows:

@@ -8,8 +8,8 @@ from prawcore.exceptions import PrawcoreException
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
-PATRICK_LIST = ["patrick", "paddy", "palace", "french", "france", "senegal", "invincible", "captain", "juventus"]
-FABIO_LIST = ["fabio", "fábio", "porto", "portugal", "portuguese", "primeira"]
+PATRICK_LIST = ["patrick", "paddy", "palace", "french", "france", "senegal", "invincible", "captain", "juventus", "henry", "gilberto", "ljungberg", "pires", "wenger", "zaha", "olise", "lehmann", "highbury", "crystal", "ligue", "nice", "thierry", "titi"]
+FABIO_LIST = ["fabio", "fábio", "porto", "portugal", "portuguese", "primeira", "bernardo", "silva", "arteta", "mikel", "conceciao", "diaz", "vitinha", "tielemans", "odegaard", "ødegaard", "saka", "nketiah", "cedric", "tomiyasu", "jesus", "gabriel", "martinelli", "gabi", "xhaka", "saliba", "white", "transfer", "deal", "edu"]
 WORDLISTS = [PATRICK_LIST, FABIO_LIST]
 
 class Bot:
@@ -22,6 +22,7 @@ class Bot:
             user_agent="<it's Vieira!>"
         )
         self.subreddit = self.reddit.subreddit(subreddit)
+        print("authenticated!")
         self.search_phrase = 'viera'
         self.comment_ids = set()
 
@@ -36,10 +37,12 @@ class Bot:
             post_counts = [sum([post_text.lower().count(word) for word in wordlist]) for wordlist in WORDLISTS]
             if post_counts[0] > post_counts[1]:
                 return "Senegal"
-            elif post_counts[1] > post_counts[0]:
-                return "Portugal"
             else:
-                return ["Senegal", "Portugal"][random.randint(0,1)]
+                return "Portugal"
+            # elif post_counts[1] > post_counts[0]:
+            #     return "Portugal"
+            # else:
+            #     return ["Senegal", "Portugal"][random.randint(0,1)]
 
     def testDetermineVieira(self, comment):
         comment_counts = [sum([comment.lower().count(word) for word in wordlist]) for wordlist in WORDLISTS]

@@ -13,7 +13,7 @@ FABIO_LIST = ["fabio", "fábio", "porto", "portugal", "portuguese", "primeira"]
 WORDLISTS = [PATRICK_LIST, FABIO_LIST]
 
 class Bot:
-    def __init__(self):
+    def __init__(self, subreddit):
         self.reddit = praw.Reddit(
             client_id=os.environ.get('CLIENT_ID'),
             client_secret=os.environ.get('CLIENT_SECRET'),
@@ -21,7 +21,7 @@ class Bot:
             password=os.environ.get('REDDIT_PASSWORD'),
             user_agent="<it's Vieira!>"
         )
-        self.subreddit = self.reddit.subreddit('Gunners')
+        self.subreddit = self.reddit.subreddit(subreddit)
         self.search_phrase = 'viera'
         self.comment_ids = set()
 
@@ -79,7 +79,7 @@ class Bot:
                     print("*******")
 
 def main():
-    bot = Bot()
+    bot = Bot(subreddit='Gunners')
     # bot.test()
     while True:
         bot.run()
